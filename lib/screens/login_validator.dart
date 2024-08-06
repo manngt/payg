@@ -183,8 +183,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _verifyCode() async {
-    final String accountSid = 'AC637a3e4856e03e4d84726311389f2afa';
-    final String authToken = '784a22629a5f2f7c42f1a5ad841cb37f';
+    final String? accountSid = dotenv.env['ACCOUNT_SID'];
+    final String? authToken =  dotenv.env['AUTH_TOKEN'];
     final String userPhoneNumber = phoneNumber; //phoneNumber;
     final String userCodeNumber = _verificationCodeControllers.map((controller) => controller.text).join();
 
