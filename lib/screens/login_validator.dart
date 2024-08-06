@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:gpay/screens/login_screen.dart';
 import 'package:gpay/screens/startup_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
   runApp(TwilioSMSVerificationApp());
@@ -147,8 +148,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _sendVerificationCode() async {
-    final String accountSid = 'AC637a3e4856e03e4d84726311389f2afa';
-    final String authToken = '784a22629a5f2f7c42f1a5ad841cb37f';
+    final String? accountSid = dotenv.env['ACCOUNT_SID'];
+    final String? authToken =  dotenv.env['AUTH_TOKEN'];
     // final String twilioNumber
     final String userPhoneNumber = _selectedCountryCode + _phoneNumberController.text;
 
