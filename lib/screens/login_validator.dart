@@ -150,11 +150,12 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _sendVerificationCode() async {
     final String? accountSid = dotenv.env['ACCOUNT_SID'];
     final String? authToken =  dotenv.env['AUTH_TOKEN'];
+    final String? secret =  dotenv.env['TW_SECRET'];
     // final String twilioNumber
     final String userPhoneNumber = _selectedCountryCode + _phoneNumberController.text;
 
     //final Uri
-    final Uri url = Uri.parse('https://verify.twilio.com/v2/Services/VA5473714b4a067df6bf72fb3fb1676f0c/Verifications');
+    final Uri url = Uri.parse('https://verify.twilio.com/v2/Services/$secret/Verifications');
     final http.Response response = await http.post(
       url,
       headers: <String, String>{
@@ -185,10 +186,11 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _verifyCode() async {
     final String? accountSid = dotenv.env['ACCOUNT_SID'];
     final String? authToken =  dotenv.env['AUTH_TOKEN'];
+    final String? secret =  dotenv.env['TW_SECRET'];
     final String userPhoneNumber = phoneNumber; //phoneNumber;
     final String userCodeNumber = _verificationCodeControllers.map((controller) => controller.text).join();
 
-    final Uri uri = Uri.parse('https://verify.twilio.com/v2/Services/VA5473714b4a067df6bf72fb3fb1676f0c/VerificationCheck');
+    final Uri uri = Uri.parse('https://verify.twilio.com/v2/Services/$secret/VerificationCheck');
     final http.Response response = await http.post(
       uri,
       headers: <String, String>{
